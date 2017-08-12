@@ -1,4 +1,5 @@
-class ApplicationController < ActionController::Base
+class TasksController < ApplicationController
+  
   def index
     @tasks = Task.all
   end
@@ -42,7 +43,7 @@ class ApplicationController < ActionController::Base
 
   def destroy
     @task = Task.find(params[:id])
-    @message.destroy
+    @task.destroy
 
     flash[:success] = 'Task は正常に削除されました'
     redirect_to tasks_url
@@ -53,6 +54,4 @@ class ApplicationController < ActionController::Base
   def task_params
       params.require(:task).permit(:content)
   end
-  
 end
-
